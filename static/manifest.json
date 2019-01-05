@@ -1,21 +1,22 @@
 {
-  "name": "Mouse Dictionary iframe",
-  "description": "Mouse Dictionary iframe",
+  "name": "Mouse Dictionary iframe support",
+  "description": "Mouse Dictionary iframe support",
   "author": "wtetsu",
   "version": "0.0.1",
-  "options_ui": {
-    "page": "options.html",
-    "open_in_tab": true
-  },
-  "permissions": ["activeTab", "https://*/*"],
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": false
-  },
+  "content_scripts": [
+    {
+      "all_frames": true,
+      "js": ["content.js"],
+      "matches": ["https://www.kaggleusercontent.com/*"]
+    }
+  ],
   "browser_action": {
-    "default_title": "webextensions-webpack-boilerplate"
+    "default_title": "Mouse Dictionary iframe support"
   },
   "manifest_version": 2,
-  "icons": {},
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
 }

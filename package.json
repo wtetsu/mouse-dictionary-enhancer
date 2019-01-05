@@ -1,11 +1,11 @@
 {
-  "name": "webextensions-webpack-boilerplate",
-  "repository": "https://github.com/wtetsu/webextensions-webpack-boillerplate.git",
+  "name": "mouse-dictionary-iframe-support",
+  "repository": "https://github.com/wtetsu/mouse-dictionary-iframe.git",
   "author": "wtetsu",
   "license": "MIT",
   "scripts": {
-    "build": "webpack",
-    "watch": "webpack -w",
+    "build": "npm run build-chrome",
+    "watch": "npm run watch-chrome",
     "build-chrome": "webpack --config webpack.config.chrome.js",
     "watch-chrome": "webpack -w --config webpack.config.chrome.js",
     "release-chrome": "NODE_ENV=production npm run build",
