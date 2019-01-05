@@ -5,23 +5,26 @@ if (window !== window.parent) {
   let _mouseDown = false;
   let _isLastMouseUpOnTheWindow = false;
 
-  const extensionId = "dnclbikcihnpjohihfcmmldgkjnebgnj";
-
-  var port = chrome.runtime.connect(extensionId);
+  const MD_EXTENSION_ID = "dnclbikcihnpjohihfcmmldgkjnebgnj";
 
   document.body.addEventListener("mousedown", () => {
     _mouseDown = true;
   });
 
   document.body.addEventListener("mouseup", e => {
-    port.postMessage({ type: "mouseup" });
+    chrome.runtime.sendMessage(MD_EXTENSION_ID, { type: "mouseup" });
 
     _mouseDown = false;
     _selection = window.getSelection().toString();
     if (_selection) {
       const SELECTION_LENGTH_LIMIT = 128;
       const text = _selection.trim().substring(0, SELECTION_LENGTH_LIMIT);
-      port.postMessage({ type: "text", text: text, mustIncludeOriginalText: true, enableShortWord: false });
+      chrome.runtime.sendMessage(MD_EXTENSION_ID, {
+        type: "text",
+        text: text,
+        mustIncludeOriginalText: true,
+        enableShortWord: false
+      });
     }
   });
 
@@ -39,6 +42,11 @@ if (window !== window.parent) {
     if (!textAtCursor) {
       return;
     }
-    port.postMessage({ type: "text", text: textAtCursor, mustIncludeOriginalText: false, enableShortWord: true });
+    chrome.runtime.sendMessage(MD_EXTENSION_ID, {
+      type: "text",
+      text: textAtCursor,
+      mustIncludeOriginalText: false,
+      enableShortWord: true
+    });
   });
 }

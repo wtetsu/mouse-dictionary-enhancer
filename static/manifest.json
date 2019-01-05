@@ -2,7 +2,7 @@
   "name": "Mouse Dictionary Kaggle support",
   "description": "Mouse Dictionary Kaggle support",
   "author": "wtetsu",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "content_scripts": [
     {
       "all_frames": true,
