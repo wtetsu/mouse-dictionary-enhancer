@@ -1,3 +1,9 @@
+/**
+ * Mouse Dictionary iframe support(https://github.com/wtetsu/mouse-dictionary-iframe/)
+ * Copyright 2019-present wtetsu
+ * Licensed under MIT
+ */
+
 import atcursor from "./atcursor";
 
 if (window !== window.parent) {

@@ -3,7 +3,7 @@
 
 # Mouse Dictionary iframe support
 
-This extension is an add-on for [Mouse Dictionary](https://github.com/wtetsu/mouse-dictionary), which makes it possible to use Mouse Dictionary inside cross-origin iframes.
+This extension is an add-on for [Mouse Dictionary](https://github.com/wtetsu/mouse-dictionary), which makes it available inside cross-origin iframes.
 
 ## Kaggle
 
