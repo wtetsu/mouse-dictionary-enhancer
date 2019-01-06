@@ -5,8 +5,6 @@ if (window !== window.parent) {
   let _mouseDown = false;
   let _isLastMouseUpOnTheWindow = false;
 
-  const MD_EXTENSION_ID = "dnclbikcihnpjohihfcmmldgkjnebgnj";
-
   document.body.addEventListener("mousedown", () => {
     _mouseDown = true;
   });

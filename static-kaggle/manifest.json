@@ -1,18 +1,18 @@
 {
-  "name": "Mouse Dictionary iframe support",
+  "name": "Mouse Dictionary Kaggle support",
   "description": "Mouse Dictionary Kaggle support",
   "author": "wtetsu",
-  "version": "1.0.0",
+  "version": "0.1.1",
   "content_scripts": [
     {
       "all_frames": true,
       "js": ["content.js"],
-      "matches": ["*://*/*"]
+      "matches": ["https://www.kaggleusercontent.com/*"]
     }
   ],
   "browser_action": {
     "default_icon": "icon48.png",
-    "default_title": "Mouse Dictionary iframe support"
+    "default_title": "Mouse Dictionary Kaggle support"
   },
   "manifest_version": 2,
   "icons": {
