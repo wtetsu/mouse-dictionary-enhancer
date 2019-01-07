@@ -1,6 +1,6 @@
 {
   "parser": "babel-eslint",
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "extends": ["eslint:recommended"],
   "env": {
     "browser": true
   },
@@ -24,14 +24,8 @@
   "rules": {
     "no-console": 0,
     "max-len": [2, { "code": 150, "tabWidth": 2, "ignoreUrls": true }],
-    "react/prop-types": 0,
     "linebreak-style": ["error", "unix"],
     "semi": ["error", "always"],
     "eqeqeq": 2
-  },
-  "settings": {
-    "react": {
-      "version": "16.5"
-    }
   }
 }
