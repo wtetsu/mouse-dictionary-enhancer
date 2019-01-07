@@ -4,7 +4,7 @@
  * Licensed under MIT
  */
 
-import atcursor from "./atcursor";
+import atcursor from "./lib/atcursor";
 
 if (window !== window.parent) {
   let _selection = null;
