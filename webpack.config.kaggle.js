@@ -7,6 +7,6 @@ specificConfig.output = {
   path: __dirname + "/dist-kaggle"
 };
 
-specificConfig.plugins.push(new CopyWebpackPlugin([{ from: "static", to: "." }]));
+specificConfig.plugins.push(new CopyWebpackPlugin([{ from: "static-kaggle", to: "." }]));
 
 module.exports = specificConfig;
