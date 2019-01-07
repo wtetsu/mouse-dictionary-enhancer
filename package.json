@@ -1,0 +1,32 @@
+{
+  "name": "webextensions-webpack-boilerplate",
+  "repository": "https://github.com/wtetsu/webextensions-webpack-boillerplate.git",
+  "author": "wtetsu",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack -w",
+    "build-chrome": "webpack --config webpack.config.chrome.js",
+    "watch-chrome": "webpack -w --config webpack.config.chrome.js",
+    "release-chrome": "NODE_ENV=production npm run build",
+    "build-firefox": "webpack --config webpack.config.firefox.js",
+    "watch-firefox": "webpack -w --config webpack.config.firefox.js",
+    "release-firefox": "NODE_ENV=production npm run build-ff",
+    "lint": "eslint src/*.js",
+    "test": "jest",
+    "test-watch": "jest --watch"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.4",
+    "copy-webpack-plugin": "^4.6.0",
+    "eslint": "^5.11.1",
+    "jest": "^23.6.0",
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.2.0"
+  }
+}
