@@ -10,17 +10,23 @@ const main = () => {
   if (window === window.parent) {
     return;
   }
+  let _active = true;
   let _selection = null;
   let _mouseDown = false;
   let _isLastMouseUpOnTheWindow = false;
 
   document.body.addEventListener("mousedown", () => {
+    if (!_active) {
+      return;
+    }
     _mouseDown = true;
   });
 
   document.body.addEventListener("mouseup", () => {
+    if (!_active) {
+      return;
+    }
     chrome.runtime.sendMessage(MD_EXTENSION_ID, { type: "mouseup" });
-
     _mouseDown = false;
     _selection = window.getSelection().toString();
     if (_selection) {
@@ -36,6 +42,9 @@ const main = () => {
   });
 
   document.body.addEventListener("mousemove", e => {
+    if (!_active) {
+      return;
+    }
     if (_mouseDown) {
       return;
     }
@@ -55,6 +64,13 @@ const main = () => {
       mustIncludeOriginalText: false,
       enableShortWord: true
     });
+  });
+
+  chrome.runtime.onMessage.addListener(request => {
+    const active = request.message.active;
+    if (typeof active === "boolean") {
+      _active = active;
+    }
   });
 };
 
