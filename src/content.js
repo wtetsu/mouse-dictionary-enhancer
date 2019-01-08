@@ -6,7 +6,10 @@
 
 import atcursor from "./lib/atcursor";
 
-if (window !== window.parent) {
+const main = () => {
+  if (window === window.parent) {
+    return;
+  }
   let _selection = null;
   let _mouseDown = false;
   let _isLastMouseUpOnTheWindow = false;
@@ -15,7 +18,7 @@ if (window !== window.parent) {
     _mouseDown = true;
   });
 
-  document.body.addEventListener("mouseup", e => {
+  document.body.addEventListener("mouseup", () => {
     chrome.runtime.sendMessage(MD_EXTENSION_ID, { type: "mouseup" });
 
     _mouseDown = false;
@@ -53,4 +56,6 @@ if (window !== window.parent) {
       enableShortWord: true
     });
   });
-}
+};
+
+main();
