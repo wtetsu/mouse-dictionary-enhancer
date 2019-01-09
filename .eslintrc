@@ -16,11 +16,13 @@
   },
   "globals": {
     "chrome": true,
+    "browser": true,
     "Promise": true,
     "BROWSER": true,
     "process": true,
     "Set": true,
-    "MD_EXTENSION_ID": true
+    "MD_EXTENSION_ID": true,
+    "TARGET_SITE_PATTERN": true
   },
   "rules": {
     "no-console": 0,

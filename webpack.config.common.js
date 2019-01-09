@@ -5,7 +5,8 @@ const MD_EXTENSION_ID = "dnclbikcihnpjohihfcmmldgkjnebgnj";
 module.exports = {
   mode: process.env.NODE_ENV || "development",
   entry: {
-    content: "./src/content.js"
+    content: "./src/content.js",
+    background: "./src/background.js"
   },
   output: {
     path: __dirname + "/dist"

@@ -4,16 +4,28 @@
  * Licensed under MIT
  */
 
-let _active = true;
+const main = async () => {
+  let _active = true;
 
-chrome.browserAction.onClicked.addListener(() => {
-  _active = !_active;
-  sendMessageToContents(_active);
-  updateIcons(_active);
-});
+  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.type === "isActive") {
+      sendResponse({ isActive: _active });
+    }
+  });
+
+  chrome.browserAction.onClicked.addListener(() => {
+    _active = !_active;
+    sendMessageToContents(_active);
+    updateIcons(_active);
+  });
+
+  chrome.tabs.onActivated.addListener(() => {
+    updateIcons(_active);
+  });
+};
 
 const sendMessageToContents = active => {
-  chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+  chrome.tabs.query({ url: TARGET_SITE_PATTERN }, tabs => {
     for (let i = 0; i < tabs.length; i++) {
       const tab = tabs[i];
       chrome.tabs.sendMessage(tab.id, { active });
@@ -32,3 +44,5 @@ const updateIcons = active => {
   };
   chrome.browserAction.setIcon(newIcon);
 };
+
+main();

@@ -6,7 +6,7 @@
 
 import atcursor from "./lib/atcursor";
 
-const main = () => {
+const main = async () => {
   if (window === window.parent) {
     return;
   }
@@ -14,6 +14,20 @@ const main = () => {
   let _selection = null;
   let _mouseDown = false;
   let _isLastMouseUpOnTheWindow = false;
+
+  // Fetch the current status
+  chrome.runtime.sendMessage({ type: "isActive" }, response => {
+    if (typeof response.isActive === "boolean") {
+      _active = response.isActive;
+    }
+  });
+
+  // Update the status
+  chrome.runtime.onMessage.addListener(request => {
+    if (typeof request.active === "boolean") {
+      _active = request.active;
+    }
+  });
 
   document.body.addEventListener("mousedown", () => {
     if (!_active) {
@@ -64,13 +78,6 @@ const main = () => {
       mustIncludeOriginalText: false,
       enableShortWord: true
     });
-  });
-
-  chrome.runtime.onMessage.addListener(request => {
-    const active = request.message.active;
-    if (typeof active === "boolean") {
-      _active = active;
-    }
   });
 };
 
