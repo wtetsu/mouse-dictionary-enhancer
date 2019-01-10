@@ -2,7 +2,7 @@
   "name": "Mouse Dictionary Kaggle support",
   "description": "Mouse Dictionary Kaggle support",
   "author": "wtetsu",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "options_ui": {
     "page": "options/options.html",
     "open_in_tab": true
