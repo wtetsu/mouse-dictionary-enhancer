@@ -20,12 +20,12 @@ const main = async () => {
   });
 
   chrome.tabs.onActivated.addListener(() => {
-    updateIcons(_active);
+    sendMessageToContents(_active);
   });
 };
 
 const sendMessageToContents = active => {
-  chrome.tabs.query({ url: TARGET_SITE_PATTERN }, tabs => {
+  chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
     for (let i = 0; i < tabs.length; i++) {
       const tab = tabs[i];
       chrome.tabs.sendMessage(tab.id, { active });
