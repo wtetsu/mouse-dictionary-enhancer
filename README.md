@@ -17,7 +17,7 @@ Mouse Dictionary Kaggle support is built from this project.
 
 ## How it works
 
-In order to resolve the problem above, cross-extension messaging is used.
+In order to resolve the problem above, this extension sends cross-extension messages to Mouse Dictionary.
 
 Here is the outline.
 
