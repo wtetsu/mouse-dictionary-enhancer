@@ -1,8 +1,9 @@
 {
   "name": "Mouse Dictionary Kaggle support",
-  "description": "Mouse Dictionary Kaggle support",
+  "description": "__MSG_appDesc__",
+  "default_locale": "en",
   "author": "wtetsu",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "options_ui": {
     "page": "options/options.html",
     "open_in_tab": true
