@@ -10,7 +10,10 @@
     "release": "NODE_ENV=production npm run build",
     "build-kaggle": "webpack --config webpack.config.kaggle.js",
     "watch-kaggle": "webpack -w --config webpack.config.kaggle.js",
-    "release-kaggle": "NODE_ENV=production npm run build-kaggle",
+    "release-kaggle": "NODE_ENV=production npm run build-allurls",
+    "build-allurls": "webpack --config webpack.config.allurls.js",
+    "watch-allurls": "webpack -w --config webpack.config.allurls.js",
+    "release-allurls": "NODE_ENV=production npm run build-allurls",
     "lint": "eslint src/*.js",
     "test": "jest",
     "test-watch": "jest --watch"
