@@ -4,7 +4,7 @@ const commonConfig = require("./webpack.config.common.js");
 const specificConfig = Object.assign({}, commonConfig);
 
 specificConfig.output = {
-  path: __dirname + "/dist-all"
+  path: __dirname + "/dist-allurls"
 };
 
 specificConfig.plugins.push(new CopyWebpackPlugin([{ from: "static-allurls", to: "." }]));
