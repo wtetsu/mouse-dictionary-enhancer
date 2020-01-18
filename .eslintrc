@@ -22,7 +22,8 @@
     "process": true,
     "Set": true,
     "MD_EXTENSION_ID": true,
-    "TARGET_SITE_PATTERN": true
+    "TARGET_SITE_PATTERN": true,
+    "Uint8Array": true
   },
   "rules": {
     "no-console": 0,
