@@ -28,10 +28,12 @@ module.exports = {
     new DefinePlugin({
       MD_EXTENSION_ID: JSON.stringify(MD_EXTENSION_ID)
     }),
-    new CopyWebpackPlugin([
-      { from: "static", to: "." },
-      { from: __dirname + "/node_modules/milligram/dist/milligram.min.css", to: "options/" }
-    ])
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: "static", to: "." },
+        { from: __dirname + "/node_modules/milligram/dist/milligram.min.css", to: "options/" }
+      ]
+    })
   ],
   devtool: process.env.NODE_ENV === "production" ? false : "cheap-module-source-map"
 };
