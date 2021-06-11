@@ -1,3 +1,4 @@
+const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const DefinePlugin = require("webpack/lib/DefinePlugin");
 const MD_EXTENSION_ID = "dnclbikcihnpjohihfcmmldgkjnebgnj";
@@ -22,7 +23,22 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [".js"]
+    extensions: [".js"],
+    alias: {
+      ponyfill$: path.resolve(__dirname, "src/lib/ponyfill/chrome")
+    }
+  },
+  optimization: {
+    minimize: isProd,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          compress: {
+            pure_funcs: ["console.info", "console.warn", "console.time", "console.timeEnd"]
+          }
+        }
+      })
+    ]
   },
   plugins: [
     new DefinePlugin({

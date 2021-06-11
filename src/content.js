@@ -4,7 +4,8 @@
  * Licensed under MIT
  */
 
-import atcursor from "./lib/atcursor";
+import traverser from "./lib/traverser";
+import letter from "./lib/rule/letter";
 
 const main = async () => {
   if (window === window.parent) {
@@ -55,6 +56,8 @@ const main = async () => {
     }
   });
 
+  const traverse = traverser.build(letter, 8);
+
   document.body.addEventListener("mousemove", e => {
     if (!_active) {
       return;
@@ -68,13 +71,16 @@ const main = async () => {
     if (!_isLastMouseUpOnTheWindow && window.getSelection().toString()) {
       return;
     }
-    const textAtCursor = atcursor(e.target, e.clientX, e.clientY, 8);
-    if (!textAtCursor) {
+
+    const textList = traverse(e.target, e.clientX, e.clientY);
+
+    if (!textList || textList.length == 0) {
       return;
     }
+
     chrome.runtime.sendMessage(MD_EXTENSION_ID, {
       type: "text",
-      text: textAtCursor,
+      text: textList[0],
       mustIncludeOriginalText: false,
       enableShortWord: true
     });
