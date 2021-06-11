@@ -74,7 +74,7 @@ const main = async () => {
 
     const textList = traverse(e.target, e.clientX, e.clientY);
 
-    if (!textList || textList.length == 0) {
+    if (!textList || textList.length === 0) {
       return;
     }
 

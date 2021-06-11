@@ -4,7 +4,7 @@
  * Licensed under MIT
  */
 
-const getComputedCssText = (params) => {
+const getComputedCssText = params => {
   const computedStyle = window.getComputedStyle(params);
 
   const styles = [];
@@ -17,7 +17,7 @@ const getComputedCssText = (params) => {
   return styles.join(";");
 };
 
-const isNumberString = (str) => {
+const isNumberString = str => {
   if (!str) {
     return false;
   }
@@ -40,7 +40,7 @@ const getCaretNodeAndOffsetFromPoint = (ownerDocument, pointX, pointY) => {
   }
   return {
     node: position.offsetNode,
-    offset: position.offset,
+    offset: position.offset
   };
 };
 

@@ -4,7 +4,7 @@
  * Licensed under MIT
  */
 
-const getComputedCssText = (params) => {
+const getComputedCssText = params => {
   const computedStyle = window.getComputedStyle(params);
   return computedStyle.cssText;
 };
@@ -16,7 +16,7 @@ const getCaretNodeAndOffsetFromPoint = (ownerDocument, pointX, pointY) => {
   }
   return {
     node: range.startContainer,
-    offset: range.startOffset,
+    offset: range.startOffset
   };
 };
 
