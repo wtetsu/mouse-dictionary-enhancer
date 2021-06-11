@@ -7,6 +7,10 @@ specificConfig.output = {
   path: __dirname + "/dist-allurls"
 };
 
-specificConfig.plugins.push(new CopyWebpackPlugin([{ from: "static-allurls", to: "." }]));
+specificConfig.plugins.push(
+  new CopyWebpackPlugin({
+    patterns: [{ from: "static-allurls", to: "." }]
+  })
+);
 
 module.exports = specificConfig;
