@@ -1,10 +1,15 @@
 const path = require("path");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 const DefinePlugin = require("webpack/lib/DefinePlugin");
+
 const MD_EXTENSION_ID = "dnclbikcihnpjohihfcmmldgkjnebgnj";
 
+const mode = process.env.NODE_ENV || "development";
+const isProd = mode === "production";
+
 module.exports = {
-  mode: process.env.NODE_ENV || "development",
+  mode,
   entry: {
     content: "./src/content.js",
     background: "./src/background.js"
@@ -44,7 +49,7 @@ module.exports = {
     new DefinePlugin({
       MD_EXTENSION_ID: JSON.stringify(MD_EXTENSION_ID)
     }),
-    new CopyWebpackPlugin({
+    new CopyPlugin({
       patterns: [
         { from: "static", to: "." },
         { from: __dirname + "/node_modules/milligram/dist/milligram.min.css", to: "options/" }

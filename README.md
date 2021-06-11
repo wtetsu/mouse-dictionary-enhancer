@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/wtetsu/mouse-dictionary-iframe.svg?branch=master)](https://travis-ci.org/wtetsu/mouse-dictionary-iframe)
+[![Test](https://github.com/wtetsu/mouse-dictionary-iframe/workflows/Test/badge.svg)](https://github.com/wtetsu/mouse-dictionary-iframe/actions?query=workflow%3ATest)
 [![Code Climate](https://codeclimate.com/github/wtetsu/mouse-dictionary-iframe/badges/gpa.svg)](https://codeclimate.com/github/wtetsu/mouse-dictionary-iframe)
 
 # Mouse Dictionary iframe support
