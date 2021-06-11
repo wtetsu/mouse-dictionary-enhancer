@@ -20,7 +20,10 @@ const main = async () => {
   });
 
   chrome.tabs.onActivated.addListener(() => {
-    sendMessageToContents(_active);
+    // Workaround "Tabs cannot be edited right now (user may be dragging a tab)" error
+    setTimeout(() => {
+      sendMessageToContents(_active);
+    }, 100);
   });
 };
 
