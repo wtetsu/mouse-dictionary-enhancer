@@ -20,7 +20,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|ts)$/,
+        test: /\.ts$/,
         use: {
           loader: "ts-loader",
         },
@@ -28,7 +28,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [".js", ".ts"],
+    extensions: [".ts"],
     alias: {
       ponyfill$: path.resolve(__dirname, "src/lib/ponyfill/chrome"),
     },

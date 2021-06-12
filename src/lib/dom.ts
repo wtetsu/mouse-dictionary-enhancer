@@ -4,15 +4,15 @@
  * Licensed under MIT
  */
 
-import ponyfill from "ponyfill";
+import ponyfill from "./ponyfill/chrome";
 
-const create = (html) => {
+const create = (html: string) => {
   const template = document.createElement("template");
   template.innerHTML = html.trim();
   return template.content.firstChild;
 };
 
-const applyStyles = (element, styles) => {
+const applyStyles = (element: any, styles: Record<string, any>) => {
   if (!styles || typeof styles !== "object") {
     return;
   }
@@ -25,7 +25,7 @@ const applyStyles = (element, styles) => {
   }
 };
 
-const replace = (element, newDom) => {
+const replace = (element: HTMLElement, newDom: HTMLElement) => {
   element.innerHTML = "";
   element.appendChild(newDom);
 };
@@ -33,7 +33,7 @@ const replace = (element, newDom) => {
 const MAX_TRAVERSE_LEVEL = 4;
 const MAX_TRAVERSE_WORDS = 10;
 
-const traverse = (elem) => {
+const traverse = (elem: any) => {
   const resultWords = [];
 
   let current = elem;
@@ -58,7 +58,7 @@ const traverse = (elem) => {
   return joinWords(resultWords.slice(0, MAX_TRAVERSE_WORDS));
 };
 
-const joinWords = (words) => {
+const joinWords = (words: string[]) => {
   const newWords = [];
   let i = 0;
   for (;;) {
@@ -72,7 +72,7 @@ const joinWords = (words) => {
         const nextWord = words[i + 1];
         newWords.push("-" + nextWord);
       } else {
-        const prevWord = newWords[newWords.length - 1];
+        const prevWord = newWords[newWords.length - 1] as string;
         const nextWord = words[i + 1];
         newWords[newWords.length - 1] = prevWord + "-" + nextWord;
       }
@@ -85,26 +85,26 @@ const joinWords = (words) => {
   return newWords.join(" ");
 };
 
-const getDescendantsWords = (elem, skip) => {
+const getDescendantsWords = (elem: Node, skip: Node | undefined = undefined): string[] => {
   const words = [];
 
   if (!elem.childNodes || elem.childNodes.length === 0) {
     if (elem === skip) {
       return [];
     }
-    const t = elem.textContent.trim();
+    const t = elem?.textContent?.trim();
     return t ? [t] : [];
   }
 
   const children = getChildren(elem, skip);
   for (let i = 0; i < children.length; i++) {
-    const descendantsWords = getDescendantsWords(children[i]);
+    const descendantsWords = getDescendantsWords(children[i] as Node);
     words.push(...descendantsWords);
   }
   return words;
 };
 
-const getChildren = (elem, skip) => {
+const getChildren = (elem: Node, skip: Node | undefined = undefined) => {
   if (!skip) {
     return elem.childNodes;
   }
@@ -120,7 +120,7 @@ const getChildren = (elem, skip) => {
   return result.reverse();
 };
 
-const clone = (orgElement, baseElement) => {
+const clone = (orgElement: HTMLElement, baseElement: HTMLElement) => {
   const clonedElement = baseElement ?? document.createElement(orgElement.tagName);
 
   // Copy all styles
@@ -130,7 +130,7 @@ const clone = (orgElement, baseElement) => {
 };
 
 // "100px" -> 100.0
-const pxToFloat = (str) => {
+const pxToFloat = (str: string) => {
   if (!str) {
     return 0;
   }
@@ -150,13 +150,17 @@ const pxToFloat = (str) => {
  * element.style.cursor = "move";
  */
 class VirtualStyle {
-  constructor(element) {
+  element: HTMLElement;
+  stagedStyles: Map<any, any>;
+  appliedStyles: Map<any, any>;
+
+  constructor(element: HTMLElement) {
     this.element = element;
     this.stagedStyles = new Map();
     this.appliedStyles = new Map();
   }
 
-  set(prop, value) {
+  set(prop: string, value: any) {
     if (this.stagedStyles.get(prop) === value) {
       return;
     }
@@ -164,7 +168,7 @@ class VirtualStyle {
     this.updateStyles();
   }
 
-  apply(styles) {
+  apply(styles: Record<string, any>) {
     for (const [prop, value] of Object.entries(styles)) {
       this.stagedStyles.set(prop, value);
     }
@@ -184,8 +188,8 @@ class VirtualStyle {
     }
   }
 
-  getUpdatedData(stagedStyles, appliedStyles) {
-    const diff = {};
+  getUpdatedData(stagedStyles: Map<any, any>, appliedStyles: Map<any, any>) {
+    const diff: Record<string, any> = {};
     let count = 0;
     for (const [prop, stagedValue] of stagedStyles) {
       if (stagedValue !== appliedStyles.get(prop)) {

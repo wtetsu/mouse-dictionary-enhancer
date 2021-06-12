@@ -102,7 +102,7 @@ function getSelectText(element: HTMLSelectElement) {
   return element.options[index]?.text;
 }
 
-const createDecoyStyle = (decoy: HTMLElement, underlay: HTMLElement): Record<string, string | number> => {
+const createDecoyStyle = (decoy: HTMLElement, underlay: HTMLElement): Record<string, any> => {
   const offset = getOffset(underlay);
   const top = offset.top - dom.pxToFloat(decoy.style.marginTop);
   const left = offset.left - dom.pxToFloat(decoy.style.marginLeft);

@@ -14,8 +14,8 @@
     "build-allurls": "webpack --config webpack.config.allurls.js",
     "watch-allurls": "webpack -w --config webpack.config.allurls.js",
     "release-allurls": "cross-env NODE_ENV=production npm run build-allurls",
-    "lint": "eslint src/**/*.{ts,js} && prettier --check src/**/*.{ts,js}",
-    "format": "prettier --write src/**/*.{ts,js}",
+    "lint": "eslint src/**/*.ts && prettier --check src/**/*.ts",
+    "format": "prettier --write src/**/*.ts",
     "test": "jest --maxWorkers=50%",
     "test-watch": "jest --maxWorkers=25% --watch",
     "test-cov": "npm test --maxWorkers=50% -- --coverage"
