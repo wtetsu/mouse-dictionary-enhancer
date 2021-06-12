@@ -9,24 +9,24 @@ Download:
 
 - [Mouse Dictionary iframe support](https://chrome.google.com/webstore/detail/mouse-dictionary-iframe-s/nigglogmamjbcnljijokibobpcfgmdfn)(Requires "<all_urls>" permission)
 
-- [Mouse Dictionary Kaggle support](https://chrome.google.com/webstore/detail/mouse-dictionary-iframe-s/bepofoammpdjhfdibmlghoaljkemineg)(Requires only "kaggleusercontent" permission)
+- [Mouse Dictionary Kaggle support](https://chrome.google.com/webstore/detail/mouse-dictionary-iframe-s/bepofoammpdjhfdibmlghoaljkemineg)(Requires only "https://www.kaggleusercontent.com/*" permission)
 
 
 ## Kaggle
 
-[Kaggle](https://www.kaggle.com/) is a typical site that uses cross-origin iframes for its important contents. Mouse Dictionary doesn't work on such iframes.
+[Kaggle](https://www.kaggle.com/) is a typical site that uses cross-origin iframes for its important contents. Mouse Dictionary doesn't work on such iframes by default.
 
-If you want to use Mouse Dictionary on Kaggle without any trouble, just install this "Mouse Dictionary Kaggle support". This add-on makes Mouse Dictionary available in cross-origin iframes on Kaggle.
+If you want to use Mouse Dictionary on Kaggle, just install **Mouse Dictionary Kaggle support** that is an add-on to enables Mouse Dictionary in cross-origin iframes on Kaggle.
 
 - [Mouse Dictionary Kaggle support](https://chrome.google.com/webstore/detail/mouse-dictionary-iframe-s/bepofoammpdjhfdibmlghoaljkemineg)
 
-Mouse Dictionary Kaggle support is built from this project.
+
+Mouse Dictionary Kaggle support is built from this **Mouse Dictionary iframe support** project.
 
 ## How it works
 
-In order to resolve the problem above, this extension sends cross-extension messages to Mouse Dictionary.
+**Mouse Dictionary iframe support** sends cross-extension messages to Mouse Dictionary.
 
-Here is the outline.
 
 ![](img/outline.png)
 
@@ -36,10 +36,7 @@ This project includes some third-party data:
 
 ### Images
 
-Monitor icon
-
-- https://www.iconfinder.com/icons/111019/monitor_icon
-- License: [Creative Commons (Attribution-Share Alike 3.0 Unported)](https://creativecommons.org/licenses/by-sa/3.0/)
+- [WPZOOM Developer Icon Set](https://www.iconfinder.com/iconsets/wpzoom-developer-icon-set) ([CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/))
 
 ## License
 
