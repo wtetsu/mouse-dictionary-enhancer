@@ -27,23 +27,26 @@ const main = async () => {
   });
 };
 
-const sendMessageToContents = active => {
-  chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+const sendMessageToContents = (active: boolean) => {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     for (let i = 0; i < tabs.length; i++) {
       const tab = tabs[i];
+      if (tab.id === undefined) {
+        continue;
+      }
       chrome.tabs.sendMessage(tab.id, { active });
     }
   });
 };
 
-const updateIcons = active => {
+const updateIcons = (active: boolean) => {
   const postfix = active ? "" : "_off";
   const newIcon = {
     path: {
       16: `icon16${postfix}.png`,
       48: `icon48${postfix}.png`,
-      128: `icon128${postfix}.png`
-    }
+      128: `icon128${postfix}.png`,
+    },
   };
   chrome.browserAction.setIcon(newIcon);
 };

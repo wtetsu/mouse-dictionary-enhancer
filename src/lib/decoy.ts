@@ -6,7 +6,7 @@
 
 import dom from "./dom";
 
-const create = tag => {
+const create = (tag: string) => {
   return new Decoy(tag);
 };
 
@@ -15,23 +15,26 @@ const INPUT_TAGS = new Set(["INPUT", "TEXTAREA", "SELECT", "OPTION"]);
 const DEFAULT_STYLES = {
   position: "absolute",
   zIndex: 2147483647,
-  opacity: 0
+  opacity: 0,
 };
 
 const STYLES = {
   INPUT: { overflow: "hidden", whiteSpace: "nowrap" },
   TEXTAREA: { overflow: "hidden" },
   SELECT: { overflow: "hidden", whiteSpace: "nowrap" },
-  OPTION: { overflow: "hidden", whiteSpace: "nowrap" }
+  OPTION: { overflow: "hidden", whiteSpace: "nowrap" },
 };
 
 class Decoy {
-  constructor(tag) {
+  elementCache: any;
+  decoy: HTMLElement | null;
+
+  constructor(tag: string) {
     this.elementCache = createElement(tag);
     this.decoy = null;
   }
 
-  activate(underlay) {
+  activate(underlay: HTMLElement) {
     if (!this.elementCache) {
       return;
     }
@@ -65,14 +68,14 @@ class Decoy {
   }
 }
 
-const createElement = tag => {
+const createElement = (tag: string) => {
   if (!tag) {
     return null;
   }
   return document.createElement(tag);
 };
 
-const prepare = (decoy, underlay) => {
+const prepare = (decoy: HTMLElement, underlay: HTMLElement) => {
   decoy.innerText = getElementText(underlay);
 
   const style = createDecoyStyle(decoy, underlay);
@@ -87,39 +90,41 @@ const prepare = (decoy, underlay) => {
   return decoy;
 };
 
-const getElementText = element => {
+const getElementText = (element: any) => {
   if (element.tagName === "SELECT") {
-    return getSelectText(element);
+    return getSelectText(element as HTMLSelectElement);
   }
   return element.text ?? element.value;
 };
 
-function getSelectText(element) {
+function getSelectText(element: HTMLSelectElement) {
   var index = element.selectedIndex;
   return element.options[index]?.text;
 }
 
-const createDecoyStyle = (decoy, underlay) => {
+const createDecoyStyle = (decoy: HTMLElement, underlay: HTMLElement): Record<string, string | number> => {
   const offset = getOffset(underlay);
   const top = offset.top - dom.pxToFloat(decoy.style.marginTop);
   const left = offset.left - dom.pxToFloat(decoy.style.marginLeft);
 
   const dynamicStyles = {
     top: `${top}px`,
-    left: `${left}px`
+    left: `${left}px`,
   };
 
-  return { ...dynamicStyles, ...DEFAULT_STYLES, ...STYLES[underlay.tagName] };
+  return { ...dynamicStyles, ...DEFAULT_STYLES, ...STYLES[underlay.tagName as keyof typeof STYLES] };
 };
 
-const getOffset = element => {
+const getOffset = (element: HTMLElement) => {
   const rect = element.getBoundingClientRect();
   const doc = document.documentElement;
 
   return {
     top: rect.top + window.pageYOffset - doc.clientTop,
-    left: rect.left + window.pageXOffset - doc.clientLeft
+    left: rect.left + window.pageXOffset - doc.clientLeft,
   };
 };
+
+export { Decoy };
 
 export default { create };

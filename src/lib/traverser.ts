@@ -5,13 +5,15 @@
  */
 
 import dom from "./dom";
-import decoy from "./decoy";
-import ponyfill from "ponyfill";
+import decoy, { Decoy } from "./decoy";
+import ponyfill from "./ponyfill/chrome";
 
-const build = (doConfirmValidCharacter, maxWords) => {
+type GetLetterType = (arg0: number) => number; // eslint-disable-line
+
+const build = (doConfirmValidCharacter: GetLetterType, maxWords: number) => {
   const traverser = new Traverser(doConfirmValidCharacter, maxWords);
 
-  const getTextUnderCursor = (element, clientX, clientY) => {
+  const getTextUnderCursor = (element: HTMLElement, clientX: number, clientY: number) => {
     let textOnCursor;
     try {
       textOnCursor = traverser.fetchTextUnderCursor(element, clientX, clientY);
@@ -25,14 +27,19 @@ const build = (doConfirmValidCharacter, maxWords) => {
 };
 
 class Traverser {
-  constructor(doGetTargetCharacterType, maxWords) {
+  JA_MAX_LENGTH: number;
+  maxWords: number;
+  getTargetCharacterType: GetLetterType;
+  decoy: Decoy;
+
+  constructor(doGetTargetCharacterType: GetLetterType, maxWords: number) {
     this.JA_MAX_LENGTH = 40;
-    this.getTargetCharacterType = doGetTargetCharacterType ?? (code => (isEnglishLikeCharacter(code) ? 3 : 0));
+    this.getTargetCharacterType = doGetTargetCharacterType ?? ((code) => (isEnglishLikeCharacter(code) ? 3 : 0));
     this.maxWords = maxWords ?? 8;
     this.decoy = decoy.create("div");
   }
 
-  fetchTextUnderCursor(element, clientX, clientY) {
+  fetchTextUnderCursor(element: HTMLElement, clientX: number, clientY: number) {
     const range = ponyfill.getCaretNodeAndOffsetFromPoint(element.ownerDocument, clientX, clientY);
     if (!range) {
       return [];
@@ -40,7 +47,7 @@ class Traverser {
     const { node, offset } = range;
 
     if (node.nodeType === Node.TEXT_NODE) {
-      return this.fetchTextFromTextNode(node, offset, this.maxWords);
+      return this.fetchTextFromTextNode(node, offset);
     }
 
     if (node.nodeType === Node.ELEMENT_NODE) {
@@ -50,17 +57,17 @@ class Traverser {
     return [];
   }
 
-  fetchTextFromTextNode(textNode, offset) {
-    const { text, subText, end, isEnglish } = this.getTextFromRange(textNode.data, offset, this.maxWords);
+  fetchTextFromTextNode(textNode: any, offset: number) {
+    const { text, subText, end, isEnglish } = this.getTextFromRange(textNode.data, offset);
     const textList = subText ? [text, subText] : [text];
     if (!end) {
       return textList;
     }
     const followingText = dom.traverse(textNode);
-    return textList.map(t => this.concatenate(t, followingText, isEnglish));
+    return textList.map((t) => this.concatenate(t, followingText, isEnglish));
   }
 
-  concatenate(text, followingText, isEnglish) {
+  concatenate(text: string, followingText: string, isEnglish: boolean) {
     const concatenatedText = concatenateFollowingText(text, followingText, isEnglish);
     const endIndex = isEnglish
       ? searchEndIndex(concatenatedText, 0, this.maxWords, this.getTargetCharacterType)
@@ -68,7 +75,7 @@ class Traverser {
     return concatenatedText.substring(0, endIndex);
   }
 
-  fetchTextFromElementNode(element, clientX, clientY) {
+  fetchTextFromElementNode(element: HTMLElement, clientX: number, clientY: number) {
     try {
       this.decoy.activate(element);
 
@@ -79,21 +86,22 @@ class Traverser {
       const { node, offset } = range;
 
       if (node.nodeType === Node.TEXT_NODE) {
-        return this.fetchTextFromTextNode(node, offset, this.maxWords);
+        return this.fetchTextFromTextNode(node, offset);
       }
     } finally {
       this.decoy.deactivate();
     }
   }
 
-  getTextFromRange(sourceText, offset) {
+  getTextFromRange(sourceText: string, offset: number): { text: string; subText: string; end: boolean; isEnglish: boolean } {
     if (!sourceText) {
-      return {};
+      return { text: "", subText: "", end: false, isEnglish: false };
     }
     const code = sourceText.charCodeAt(offset);
     const isEnglish = isEnglishLikeCharacter(code);
 
-    let startIndex, endIndex, text, subText;
+    let startIndex, endIndex, text;
+    let subText: string = "";
     if (isEnglish) {
       startIndex = searchStartIndex(sourceText, offset, this.getTargetCharacterType);
       endIndex = searchEndIndex(sourceText, offset, this.maxWords, this.getTargetCharacterType);
@@ -114,7 +122,7 @@ class Traverser {
   }
 }
 
-const retrieveProperStartIndex = (sourceText, cursorIndex) => {
+const retrieveProperStartIndex = (sourceText: string, cursorIndex: number) => {
   let currentLength = 0;
   const tokens = tokenize(sourceText, "ja-JP");
   if (!tokens) {
@@ -130,7 +138,7 @@ const retrieveProperStartIndex = (sourceText, cursorIndex) => {
   return 0;
 };
 
-const searchStartIndex = (text, index, doGetCharacterType) => {
+const searchStartIndex = (text: string, index: number, doGetCharacterType: GetLetterType) => {
   let startIndex;
   let i = index;
   for (;;) {
@@ -149,7 +157,7 @@ const searchStartIndex = (text, index, doGetCharacterType) => {
   return startIndex;
 };
 
-const searchEndIndex = (text, index, maxWords, doGetCharacterType) => {
+const searchEndIndex = (text: string, index: number, maxWords: number, doGetCharacterType: GetLetterType) => {
   let endIndex;
   let i = index + 1;
   let spaceCount = 0;
@@ -183,7 +191,7 @@ const searchEndIndex = (text, index, maxWords, doGetCharacterType) => {
   return endIndex;
 };
 
-const concatenateFollowingText = (text, followingText, isEnglish) => {
+const concatenateFollowingText = (text: string, followingText: string, isEnglish: boolean) => {
   if (!followingText) {
     return text;
   }
@@ -196,9 +204,9 @@ const concatenateFollowingText = (text, followingText, isEnglish) => {
   return text + " " + followingText;
 };
 
-const isEnglishLikeCharacter = code => 0x20 <= code && code <= 0x7e;
+const isEnglishLikeCharacter = (code: number) => 0x20 <= code && code <= 0x7e;
 
-const tokenize = (text, lang) => {
+const tokenize = (text: string, lang: string) => {
   if (!Intl?.v8BreakIterator) {
     return null;
   }

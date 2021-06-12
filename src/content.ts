@@ -12,19 +12,19 @@ const main = async () => {
     return;
   }
   let _active = true;
-  let _selection = null;
+  let _selection: string | undefined;
   let _mouseDown = false;
   let _isLastMouseUpOnTheWindow = false;
 
   // Fetch the current status
-  chrome.runtime.sendMessage({ type: "isActive" }, response => {
+  chrome.runtime.sendMessage({ type: "isActive" }, (response) => {
     if (typeof response.isActive === "boolean") {
       _active = response.isActive;
     }
   });
 
   // Update the status
-  chrome.runtime.onMessage.addListener(request => {
+  chrome.runtime.onMessage.addListener((request) => {
     if (typeof request.active === "boolean") {
       _active = request.active;
     }
@@ -43,7 +43,7 @@ const main = async () => {
     }
     chrome.runtime.sendMessage(MD_EXTENSION_ID, { type: "mouseup" });
     _mouseDown = false;
-    _selection = window.getSelection().toString();
+    _selection = window.getSelection()?.toString();
     if (_selection) {
       const SELECTION_LENGTH_LIMIT = 128;
       const text = _selection.trim().substring(0, SELECTION_LENGTH_LIMIT);
@@ -51,14 +51,14 @@ const main = async () => {
         type: "text",
         text: text,
         mustIncludeOriginalText: true,
-        enableShortWord: false
+        enableShortWord: false,
       });
     }
   });
 
   const traverse = traverser.build(letter, 8);
 
-  document.body.addEventListener("mousemove", e => {
+  document.body.addEventListener("mousemove", (e) => {
     if (!_active) {
       return;
     }
@@ -68,11 +68,15 @@ const main = async () => {
     if (_isLastMouseUpOnTheWindow && _selection) {
       return;
     }
-    if (!_isLastMouseUpOnTheWindow && window.getSelection().toString()) {
+    if (!_isLastMouseUpOnTheWindow && window.getSelection()?.toString()) {
       return;
     }
 
-    const textList = traverse(e.target, e.clientX, e.clientY);
+    if (!e.target) {
+      return;
+    }
+
+    const textList = traverse(e.target as HTMLElement, e.clientX, e.clientY);
 
     if (!textList || textList.length === 0) {
       return;
@@ -82,7 +86,7 @@ const main = async () => {
       type: "text",
       text: textList[0],
       mustIncludeOriginalText: false,
-      enableShortWord: true
+      enableShortWord: true,
     });
   });
 };

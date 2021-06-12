@@ -102,11 +102,11 @@ const LETTER_RULE = [
   // [125, 0], // }
   // [126, 0], // ~
   [8204, 2], // zero width non-joiner,\
-  [8209, 3] // ‑
+  [8209, 3], // ‑
 ];
 
-const m = new Map(LETTER_RULE);
+const m = new Map(LETTER_RULE as Iterable<[number, number]>);
 
-export default letter => {
-  return m.get(letter);
+export default (letter: number): number => {
+  return m.get(letter) as number;
 };

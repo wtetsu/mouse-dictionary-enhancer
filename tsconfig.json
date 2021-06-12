@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",
+    "module": "ESNext",
+    "lib": ["esnext", "dom"],
+    "sourceMap": true,
+    "strict": true,
+    "allowJs": true,
+    "typeRoots": ["src/@types", "./node_modules/@types"],
+    "types": ["chrome", "jest"]
+  },
+  "include": ["src/**/*.ts", "src/**/*.js", "__test__/*.ts"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}
