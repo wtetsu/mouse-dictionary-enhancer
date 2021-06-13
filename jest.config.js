@@ -4,10 +4,7 @@ module.exports = {
   moduleNameMapper: {
     "^ponyfill$": "<rootDir>/src/lib/ponyfill/chrome",
   },
-  moduleFileExtensions: ["ts", "tsx", "js"],
-  transform: {
-    "^.+\\.(ts|tsx)$": "ts-jest",
-  },
+  moduleFileExtensions: ["ts", "js"],
   globals: {
     "ts-jest": {
       tsConfigFile: "tsconfig.json",

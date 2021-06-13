@@ -8,16 +8,6 @@
   "parserOptions": {
     "project": ["./tsconfig.json"]
   },
-  // "parserOptions": {
-  //   "sourceType": "module",
-  //   "allowImportExportEverywhere": false,
-  //   "codeFrame": false,
-  //   "ecmaVersion": 2020,
-  //   "ecmaFeatures": {
-  //     "jsx": true,
-  //     "modules": true
-  //   }
-  // },
   "globals": {
     "chrome": true,
     "browser": true,
