@@ -11,6 +11,7 @@
   "content_scripts": [
     {
       "all_frames": true,
+      "match_about_blank": true,
       "js": ["content.js"],
       "matches": ["<all_urls>"]
     }
