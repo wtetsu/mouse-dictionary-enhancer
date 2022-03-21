@@ -1,4 +1,4 @@
-name: Build for all_urls
+name: Build for Enhancer
 
 on: [push, pull_request]
 
@@ -8,7 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [15.x, 16.x]
+        node-version: [16.x, 17.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -19,9 +19,9 @@ jobs:
       - name: Install Packages
         run: npm install
       - name: Build
-        run: npm run release-allurls
+        run: npm run release-enhancer
       - name: Upload Build as Artifact
         uses: actions/upload-artifact@v1
         with:
-          name: dist-allurls
-          path: dist-allurls
+          name: dist-enhancer
+          path: dist-enhancer
