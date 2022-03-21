@@ -56,6 +56,10 @@ This project includes some third-party data:
 
 - [WPZOOM Developer Icon Set](https://www.iconfinder.com/iconsets/wpzoom-developer-icon-set) ([CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/))
 
+### Great JavaScript libraries
+
+- See [package.json](./package.json) and [license.json](https://github.com/wtetsu/mouse-dictionary-enhancer/actions/workflows/license.yml)
+
 ## License
 
 MIT
