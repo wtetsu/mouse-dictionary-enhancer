@@ -1,5 +1,5 @@
 /**
- * Mouse Dictionary iframe support(https://github.com/wtetsu/mouse-dictionary-iframe/)
+ * Mouse Dictionary Enhancer(https://github.com/wtetsu/mouse-dictionary-enhancer/)
  * Copyright 2019-present wtetsu
  * Licensed under MIT
  */
