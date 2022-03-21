@@ -14,7 +14,15 @@
       "all_frames": true,
       "match_about_blank": true,
       "js": ["content.js"],
-      "matches": ["<all_urls>"]
+      "matches": ["<all_urls>"],
+      "run_at": "document_idle"
+    },
+    {
+      "all_frames": false,
+      "match_about_blank": false,
+      "js": ["documentStart.js"],
+      "matches": ["https://docs.google.com/*"],
+      "run_at": "document_start"
     }
   ],
   "background": {
@@ -28,5 +36,11 @@
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["scripts/htmlMode.js"],
+      "matches": ["https://docs.google.com/*"]
+    }
+  ]
 }

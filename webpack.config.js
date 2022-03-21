@@ -21,6 +21,7 @@ module.exports = (env) => {
     entry: {
       content: "./src/content.ts",
       background: "./src/background.ts",
+      documentStart: "./src/documentStart.ts",
     },
     output: {
       path: `${__dirname}/dist-${env.edition}`,

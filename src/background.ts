@@ -7,9 +7,16 @@
 const main = async () => {
   let _active = true;
 
-  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.type === "isActive") {
-      sendResponse({ isActive: _active });
+  chrome.runtime.onMessage.addListener((request, _, sendResponse) => {
+    switch (request.type) {
+      case "isActive":
+        sendResponse({ isActive: _active });
+        break;
+      case "toHtmlMode":
+        if (_active) {
+          sendResponse("htmlMode.js");
+        }
+        break;
     }
   });
 
