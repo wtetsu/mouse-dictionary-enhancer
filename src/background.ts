@@ -13,7 +13,7 @@ const main = async () => {
     }
   });
 
-  chrome.browserAction.onClicked.addListener(() => {
+  chrome.action.onClicked.addListener(() => {
     _active = !_active;
     sendMessageToContents(_active);
     updateIcons(_active);
@@ -48,7 +48,7 @@ const updateIcons = (active: boolean) => {
       128: `icon128${postfix}.png`,
     },
   };
-  chrome.browserAction.setIcon(newIcon);
+  chrome.action.setIcon(newIcon);
 };
 
 main();
