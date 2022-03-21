@@ -97,10 +97,10 @@ const getElementText = (element: any) => {
   return element.text ?? element.value;
 };
 
-function getSelectText(element: HTMLSelectElement) {
+const getSelectText = (element: HTMLSelectElement) => {
   var index = element.selectedIndex;
   return element.options[index]?.text;
-}
+};
 
 const createDecoyStyle = (decoy: HTMLElement, underlay: HTMLElement): Record<string, any> => {
   const offset = getOffset(underlay);
