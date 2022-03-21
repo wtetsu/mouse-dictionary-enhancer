@@ -16,13 +16,18 @@ module.exports = (env) => {
     throw new Error("env.edition is empty");
   }
 
+  const entry = {
+    content: "./src/content.ts",
+    background: "./src/background.ts",
+  };
+
+  if (env.edition === "enhancer") {
+    entry.documentStart = "./src/documentStart.ts";
+  }
+
   return {
     mode,
-    entry: {
-      content: "./src/content.ts",
-      background: "./src/background.ts",
-      documentStart: "./src/documentStart.ts",
-    },
+    entry,
     output: {
       path: `${__dirname}/dist-${env.edition}`,
     },
