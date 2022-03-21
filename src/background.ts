@@ -43,9 +43,9 @@ const updateIcons = (active: boolean) => {
   const postfix = active ? "" : "_off";
   const newIcon = {
     path: {
-      16: `icon16${postfix}.png`,
-      48: `icon48${postfix}.png`,
-      128: `icon128${postfix}.png`,
+      16: `icons/icon16${postfix}.png`,
+      48: `icons/icon48${postfix}.png`,
+      128: `icons/icon128${postfix}.png`,
     },
   };
   chrome.action.setIcon(newIcon);
