@@ -1,5 +1,5 @@
 {
-  "name": "Mouse Dictionary iframe support",
+  "name": "Mouse Dictionary Enhancer",
   "description": "__MSG_appDesc__",
   "default_locale": "en",
   "author": "wtetsu",
@@ -22,7 +22,7 @@
   },
   "browser_action": {
     "default_icon": "icon48.png",
-    "default_title": "Mouse Dictionary iframe support"
+    "default_title": "Mouse Dictionary Enhancer"
   },
   "manifest_version": 2,
   "icons": {

@@ -4,12 +4,12 @@ const commonConfig = require("./webpack.config.common.js");
 const specificConfig = Object.assign({}, commonConfig);
 
 specificConfig.output = {
-  path: __dirname + "/dist-allurls"
+  path: __dirname + "/dist-enhancer",
 };
 
 specificConfig.plugins.push(
   new CopyWebpackPlugin({
-    patterns: [{ from: "static-allurls", to: "." }]
+    patterns: [{ from: "static-enhancer", to: "." }],
   })
 );
 
