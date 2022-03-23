@@ -5,14 +5,10 @@
 
 This extension is an add-on for [Mouse Dictionary](https://github.com/wtetsu/mouse-dictionary), which makes it available inside more sites.
 
-* iframes (including Kaggle)
-* Google Docs
-
 Download:
 
-- [Mouse Dictionary Enhancer](https://chrome.google.com/webstore/detail/nigglogmamjbcnljijokibobpcfgmdfn)
+- [Mouse Dictionary iframe Support](https://chrome.google.com/webstore/detail/nigglogmamjbcnljijokibobpcfgmdfn)
   - Add iframe support on any sites
-  - Add Google Docs support
   - Requires "<all_urls>" permission
 
 - [Mouse Dictionary Kaggle Support](https://chrome.google.com/webstore/detail/bepofoammpdjhfdibmlghoaljkemineg)
@@ -37,15 +33,6 @@ Mouse Dictionary Kaggle support is built from this **Mouse Dictionary iframe sup
 **Mouse Dictionary iframe support** sends cross-extension messages to Mouse Dictionary.
 
 ![](img/outline.png)
-
-
-## Google Docs support
-
-In 2021, Google announced [Google Docs is migrated to a canvas-based rendering](https://workspaceupdates.googleblog.com/2021/05/Google-Docs-Canvas-Based-Rendering-Update.html). This migration impacts Chrome extensions that is designed to work on HTML document. Mouse Dictionary is no exception.
-
-Mouse Dictionary Enhancer has a feature that makes Mouse Dictionary available on Google Docs again.
-
-Note that this is just a workaround. Probably, HTML rendering of Google Docs will be completely abolished in the future and Chrome extensions that work on HTML documents will be obsoleted on Google Docs.
 
 
 ## Third-party data

@@ -11,6 +11,10 @@ const main = async () => {
   if (window === window.parent) {
     return;
   }
+  if (!document.body) {
+    return;
+  }
+
   let _active = true;
   let _selection: string | undefined;
   let _mouseDown = false;
