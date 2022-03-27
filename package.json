@@ -7,7 +7,7 @@
   "scripts": {
     "build": "npm run build-kaggle && npm run build-iframe && npm run build-enhancer",
     "release": "npm run release-kaggle && npm run release-iframe && npm run release-enhancer",
-    "package": "npm run package-kaggle && npm run release-iframe && npm run package-enhancer",
+    "package": "npm run package-kaggle && npm run package-iframe && npm run package-enhancer",
     "build-kaggle": "webpack --env edition=kaggle",
     "watch-kaggle": "webpack -w --env edition=kaggle",
     "release-kaggle": "webpack --env edition=kaggle --node-env=production",
