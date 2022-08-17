@@ -3,7 +3,7 @@
 
 # Mouse Dictionary Enhancer
 
-This extension is an add-on for [Mouse Dictionary](https://github.com/wtetsu/mouse-dictionary), which makes it available inside more sites.
+This extension is an add-on for [Mouse Dictionary](https://github.com/wtetsu/mouse-dictionary), that makes it available on more sites.
 
 Download:
 
@@ -19,18 +19,13 @@ Download:
 
 ## About Kaggle
 
-[Kaggle](https://www.kaggle.com/) is a typical site that uses cross-origin iframes for its important contents. Mouse Dictionary doesn't work on such iframes by default.
+[Kaggle](https://www.kaggle.com/) is a typical site that has main contents in cross-origin iframes. Mouse Dictionary doesn't work on such iframes by default.
 
-If you want to use Mouse Dictionary on Kaggle, just install **Mouse Dictionary Kaggle support** that is an add-on to enables Mouse Dictionary in cross-origin iframes on Kaggle.
-
-- [Mouse Dictionary Kaggle support](https://chrome.google.com/webstore/detail/mouse-dictionary-iframe-s/bepofoammpdjhfdibmlghoaljkemineg)
-
-
-Mouse Dictionary Kaggle support is built from this **Mouse Dictionary iframe support** project.
+Mouse Dictionary Kaggle Support enables Mouse Dictionary in cross-origin iframes on Kaggle.
 
 ## How it works in iframe
 
-**Mouse Dictionary iframe support** sends cross-extension messages to Mouse Dictionary.
+**Mouse Dictionary iframe Support** sends cross-extension messages to Mouse Dictionary.
 
 ![](img/outline.png)
 
