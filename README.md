@@ -3,7 +3,7 @@
 
 # Mouse Dictionary Enhancer
 
-This extension is an add-on for [Mouse Dictionary](https://github.com/wtetsu/mouse-dictionary), that makes it available on more sites.
+This extension is an add-on for [Mouse Dictionary](https://github.com/wtetsu/mouse-dictionary), making it usable on more websites.
 
 Download:
 
