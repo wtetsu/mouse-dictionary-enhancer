@@ -1,5 +1,5 @@
-[![Test](https://github.com/wtetsu/mouse-dictionary-iframe/workflows/Test/badge.svg)](https://github.com/wtetsu/mouse-dictionary-iframe/actions?query=workflow%3ATest)
-[![Code Climate](https://codeclimate.com/github/wtetsu/mouse-dictionary-iframe/badges/gpa.svg)](https://codeclimate.com/github/wtetsu/mouse-dictionary-iframe)
+[![Test](https://github.com/wtetsu/mouse-dictionary-enhancer/workflows/Test/badge.svg)](https://github.com/wtetsu/mouse-dictionary-enhancer/actions?query=workflow%3ATest)
+[![Maintainability](https://api.codeclimate.com/v1/badges/0aea1b4a1c9dc4a984b7/maintainability)](https://codeclimate.com/github/wtetsu/mouse-dictionary-enhancer/maintainability)
 
 # Mouse Dictionary Enhancer
 
