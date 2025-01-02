@@ -29,15 +29,15 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
-    "@types/chrome": "^0.0.209",
+    "@types/chrome": "^0.0.287",
     "@vitest/coverage-v8": "^2.1.8",
     "adm-zip": "^0.5.16",
-    "copy-webpack-plugin": "^11.0.0",
+    "copy-webpack-plugin": "^12.0.2",
     "jsdom": "^25.0.1",
     "milligram": "^1.4.1",
-    "ts-loader": "^9.4.2",
+    "ts-loader": "^9.5.1",
     "vitest": "^2.1.8",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1"
   }
 }
