@@ -9,6 +9,6 @@
     "typeRoots": ["src/@types", "./node_modules/@types"],
     "types": ["chrome"]
   },
-  "include": ["src/**/*.ts", "__test__/*.ts"],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }
