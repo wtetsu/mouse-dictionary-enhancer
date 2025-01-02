@@ -30,7 +30,6 @@
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@types/chrome": "^0.0.209",
-    "@typescript-eslint/parser": "^5.48.2",
     "@vitest/coverage-v8": "^2.1.8",
     "adm-zip": "^0.5.16",
     "copy-webpack-plugin": "^11.0.0",
