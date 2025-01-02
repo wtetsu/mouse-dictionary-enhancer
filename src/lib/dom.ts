@@ -135,9 +135,9 @@ const pxToFloat = (str: string) => {
     return 0;
   }
   if (str.endsWith("px")) {
-    return parseFloat(str.slice(0, -2));
+    return Number.parseFloat(str.slice(0, -2));
   }
-  return parseFloat(str);
+  return Number.parseFloat(str);
 };
 
 /**

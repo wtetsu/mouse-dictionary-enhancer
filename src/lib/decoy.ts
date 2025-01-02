@@ -98,7 +98,7 @@ const getElementText = (element: any) => {
 };
 
 const getSelectText = (element: HTMLSelectElement) => {
-  var index = element.selectedIndex;
+  const index = element.selectedIndex;
   return element.options[index]?.text;
 };
 

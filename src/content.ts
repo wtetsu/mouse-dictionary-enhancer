@@ -4,8 +4,8 @@
  * Licensed under MIT
  */
 
-import traverser from "./lib/traverser";
 import letter from "./lib/rule/letter";
+import traverser from "./lib/traverser";
 
 const main = async () => {
   if (window === window.parent) {
@@ -18,7 +18,7 @@ const main = async () => {
   let _active = true;
   let _selection: string | undefined;
   let _mouseDown = false;
-  let _isLastMouseUpOnTheWindow = false;
+  const _isLastMouseUpOnTheWindow = false;
 
   // Fetch the current status
   chrome.runtime.sendMessage({ type: "isActive" }, (response) => {

@@ -4,8 +4,9 @@
  * Licensed under MIT
  */
 
+import decoy from "./decoy";
+import type { Decoy } from "./decoy";
 import dom from "./dom";
-import decoy, { Decoy } from "./decoy";
 import ponyfill from "./ponyfill/chrome";
 
 type GetLetterType = (arg0: number) => number; // eslint-disable-line
@@ -14,7 +15,7 @@ const build = (doConfirmValidCharacter: GetLetterType, maxWords: number) => {
   const traverser = new Traverser(doConfirmValidCharacter, maxWords);
 
   const getTextUnderCursor = (element: HTMLElement, clientX: number, clientY: number) => {
-    let textOnCursor;
+    let textOnCursor: string[] | undefined;
     try {
       textOnCursor = traverser.fetchTextUnderCursor(element, clientX, clientY);
     } catch (err) {
@@ -93,15 +94,20 @@ class Traverser {
     }
   }
 
-  getTextFromRange(sourceText: string, offset: number): { text: string; subText: string; end: boolean; isEnglish: boolean } {
+  getTextFromRange(
+    sourceText: string,
+    offset: number,
+  ): { text: string; subText: string; end: boolean; isEnglish: boolean } {
     if (!sourceText) {
       return { text: "", subText: "", end: false, isEnglish: false };
     }
     const code = sourceText.charCodeAt(offset);
     const isEnglish = isEnglishLikeCharacter(code);
 
-    let startIndex, endIndex, text;
-    let subText: string = "";
+    let startIndex: number;
+    let endIndex: number;
+    let text: string;
+    let subText = "";
     if (isEnglish) {
       startIndex = searchStartIndex(sourceText, offset, this.getTargetCharacterType);
       endIndex = searchEndIndex(sourceText, offset, this.maxWords, this.getTargetCharacterType);
@@ -139,7 +145,7 @@ const retrieveProperStartIndex = (sourceText: string, cursorIndex: number) => {
 };
 
 const searchStartIndex = (text: string, index: number, doGetCharacterType: GetLetterType) => {
-  let startIndex;
+  let startIndex: number;
   let i = index;
   for (;;) {
     const code = text.charCodeAt(i);
@@ -158,7 +164,7 @@ const searchStartIndex = (text: string, index: number, doGetCharacterType: GetLe
 };
 
 const searchEndIndex = (text: string, index: number, maxWords: number, doGetCharacterType: GetLetterType) => {
-  let endIndex;
+  let endIndex: number;
   let i = index + 1;
   let spaceCount = 0;
   let theLastIsSpace = false;
