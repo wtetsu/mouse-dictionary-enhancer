@@ -29,14 +29,14 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
-    "@types/chrome": "^0.0.287",
-    "@vitest/coverage-v8": "^2.1.8",
+    "@types/chrome": "^0.0.303",
+    "@vitest/coverage-v8": "^3.0.5",
     "adm-zip": "^0.5.16",
     "copy-webpack-plugin": "^12.0.2",
-    "jsdom": "^25.0.1",
+    "jsdom": "^26.0.0",
     "milligram": "^1.4.1",
-    "ts-loader": "^9.5.1",
-    "vitest": "^2.1.8",
+    "ts-loader": "^9.5.2",
+    "vitest": "^3.0.5",
     "webpack": "^5.97.1",
     "webpack-cli": "^6.0.1"
   }
